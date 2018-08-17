@@ -1,0 +1,30 @@
+{
+  "name": "hexo-download-images",
+  "version": "0.0.1",
+  "description": "Download online images in hexo post.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/boboidream/hexo-download-images.git"
+  },
+  "keywords": [
+    "hexo",
+    "insert",
+    "images"
+  ],
+  "author": "boboidream",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boboidream/hexo-download-images/issues"
+  },
+  "homepage": "https://github.com/boboidream/hexo-download-images#readme",
+  "dependencies": {
+    "del": "^3.0.0",
+    "hexo-fs": "^0.2.3",
+    "hexo-log": "^0.2.0",
+    "request": "^2.88.0"
+  }
+}
