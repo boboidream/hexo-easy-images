@@ -23,6 +23,7 @@
   "homepage": "https://github.com/boboidream/hexo-download-images#readme",
   "dependencies": {
     "del": "^3.0.0",
+    "eventproxy": "^1.0.0",
     "hexo-fs": "^0.2.3",
     "hexo-log": "^0.2.0",
     "image-size": "^0.6.3",
