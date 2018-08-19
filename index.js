@@ -22,6 +22,7 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
   if (file.type == 'delete') return file
   if (file.type == 'skip' && config && !config.init) return file
 
+  log.info(`EasyImages: process ${file.params.id}`)
   //获取图片列表
   var content =  fs.readFileSync(file.source)
   var pattern = /!\[.*?\]\((.*?)\)/g
@@ -153,9 +154,17 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
 
   //-------------------------------------------------------------
   function fixExt(path_img) {
+    if (!fs.existsSync(path_img)) return path_img
+
     let buffer = readChunk.sync(path_img, 0, 12);
     let origin_ext = path.extname(path_img)
-    let real = imageType(buffer);
+    let real = imageType(buffer)
+
+    if (!real) {
+      log.warn(`Can't recognize ${path_img}.`)
+      return path_img
+    }
+
     let real_ext = '.' + real.ext
     let path_res = path_img
 
@@ -163,17 +172,25 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
       path_res = path_img.replace(origin_ext, real_ext)
       fs.renameSync(path_img, path_res)
       log.info(`Fix ${path_img} to ${real.ext} success!`)
+      return path_res
+    } else {
+      return path_res
     }
-
-    return path_res
   }
 
   function resizeImg(path_img, w, h) {
-    if (!path_img) log.warn(`path_img is empty.`)
+    if (!fs.existsSync(path_img)) return path_img
     if (path.extname(path_img).toLowerCase() == '.gif') return path_img
 
-    let dimensions = sizeOf(path_img)
+    var dimensions = null
     var path_res = path_img
+
+    try {
+      dimensions = sizeOf(path_img)
+    } catch (err) {
+      log.warn(`ImageSize: can't recognize ${path_img}.`)
+      return path_img
+    }
 
     if (dimensions.width > w || dimensions.height > h) {
       let path_res = path_img
@@ -203,6 +220,7 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
     request(src).on('error', (err) => {
       del.sync(dest)
       log.warn(`Download ${src} failed.`)
+      return
     }).pipe(ws)
 
     ws.on('finish', () => {
@@ -223,7 +241,6 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
       del.sync(dest)
     })
   }
-
 
   function replaceAll(str, mapObj){
     var re = new RegExp(Object.keys(mapObj).join("|"),"gi");
