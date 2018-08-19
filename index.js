@@ -128,7 +128,7 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
       info.to = fixExt(info.to)
 
       //压缩图片
-      if (config.max_width || config.max_height){
+      if (config && (config.max_width || config.max_height)){
         info.to = resizeImg(info.to, config.max_width, config.max_height)
         info.new = path.relative(dir_post, info.to)
       }
