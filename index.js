@@ -161,7 +161,7 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
 
     if (origin_ext.toLowerCase() != real_ext) {
       path_res = path_img.replace(origin_ext, real_ext)
-
+      fs.renameSync(path_img, path_res)
       log.info(`Fix ${path_img} to ${real.ext} success!`)
     }
 
@@ -239,7 +239,8 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
 hexo.extend.filter.register('before_post_render', function(data){
   const config = this.config.easy_images
   var dir_post = path.join(this.source_dir, data.source)
-  var dir_images = path.join(this.source_dir, 'images', data.slug)
+  var post_id = path.basename(data.source, '.md')
+  var dir_images = path.join(this.source_dir, 'images', post_id)
   var pattern = /!\[(.*?)\]\((.*?)\)/g
 
   data.content = data.content.replace(pattern, (match, alt, src) => {

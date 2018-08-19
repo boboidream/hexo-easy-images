@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/boboidream/hexo-easy-images#readme",
   "dependencies": {
+    "bagpipe": "^0.3.5",
     "del": "^3.0.0",
     "eventproxy": "^1.0.0",
     "hexo-fs": "^0.2.3",
