@@ -161,7 +161,7 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
 
     if (origin_ext.toLowerCase() != real_ext) {
       path_res = path_img.replace(origin_ext, real_ext)
-      fs.renameSync(path_img, path_res)
+
       log.info(`Fix ${path_img} to ${real.ext} success!`)
     }
 
@@ -180,7 +180,6 @@ hexo.extend.processor.register('posts/:id.md', function(file) {
       let img_ext = path.extname(path_img)
 
       path_res = path_img.replace(img_ext, '-s' + img_ext)
-
       sharp(path_img)
         .resize(w, h)
         .max()
