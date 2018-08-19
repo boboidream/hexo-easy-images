@@ -1,4 +1,7 @@
-## hexo-easy-images
+# hexo-easy-images
+![node](https://img.shields.io/badge/node-%3E%3D8.7.0-green.svg)
+
+Hexo 博客插件，post 中随意引用本地图片、远程图片，插件将自动处理图片 copy 与 download及引用路径，本地预览与线上都能完美显示图片。
 
 ### 安装
 ```bash
