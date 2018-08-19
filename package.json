@@ -1,14 +1,14 @@
 {
-  "name": "hexo-download-images",
+  "name": "hexo-easy-images",
   "version": "0.0.1",
-  "description": "Download online images in hexo post.",
+  "description": "Easy to use images in hexo.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/boboidream/hexo-download-images.git"
+    "url": "git+ssh://git@github.com/boboidream/hexo-easy-images.git"
   },
   "keywords": [
     "hexo",
@@ -18,9 +18,9 @@
   "author": "boboidream",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boboidream/hexo-download-images/issues"
+    "url": "https://github.com/boboidream/hexo-easy-images/issues"
   },
-  "homepage": "https://github.com/boboidream/hexo-download-images#readme",
+  "homepage": "https://github.com/boboidream/hexo-easy-images#readme",
   "dependencies": {
     "del": "^3.0.0",
     "eventproxy": "^1.0.0",
